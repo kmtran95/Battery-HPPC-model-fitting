@@ -9,20 +9,20 @@
 
 %% Parameters to change in the code
 currentLimit = 0.5; % Current above this limit will be considered as 1C current  
-%iniPar = [0.06;0.03;1000]; 
-%iniPar = [0.05;0.05;2000;0.005;800]; 
-%iniPar = [0.05;0.01;1000;0.001;0.1]; 
-iniPar = [0.05;0.01;1500;0.003;200;0.000005;50]; 
+iniPar = [0.06;0.03;1000]; % 1RC
+%iniPar = [0.05;0.05;2000;0.005;800]; % 2RC
+%iniPar = [0.05;0.01;1000;0.001;0.1]; % 1RC+H
+%iniPar = [0.05;0.01;1500;0.003;200;0.000005;50]; % 2RC+H
 
 %% Parameters used in algorithm 
-%xIni = 0;
-%xIni = [0; 0];
-xIni = [0; 0; 0];
+xIni = 0; % 1RC
+%xIni = [0; 0]; % 2RC and 1RC+H
+%xIni = [0; 0; 0]; % 2RC+H
 [m,n] = size(dataHPPC{1});
-outputPar = zeros(7,n); % %3 - 1RC, 5 - 1RC+H and 2RC, 7 - 2RC+H
+outputPar = zeros(3,n); % %3 - 1RC, 5 - 1RC+H and 2RC, 7 - 2RC+H
 modelError = zeros(m,n); 
 vModel = zeros(m,n); 
-model = 4; %1 - c1RC, 2 - 2RC, 3 - 1RC+H, 4 - 2RC+H
+model = 1; %1 - c1RC, 2 - 2RC, 3 - 1RC+H, 4 - 2RC+H
 
 %% Running the objective function and solving for the parameters
 for i = 1:n
